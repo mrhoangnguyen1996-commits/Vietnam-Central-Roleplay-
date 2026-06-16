@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>VCR | Vietnam Central Roleplay Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        /* Hiệu ứng chuyển động mượt mà */
+        .tab-content { transition: all 0.3s ease-in-out; }
+        .hover-card:hover { transform: translateY(-5px); transition: 0.3s; }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-200">
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-black/70 border-b border-gray-800 p-4 flex justify-between items-center">
+        <h1 class="text-xl font-black text-blue-500 uppercase animate__animated animate__fadeInLeft">VCR - CENTRAL PORTAL</h1>
+        <div class="space-x-6 text-sm font-bold">
+            <button onclick="show('jobs')" class="hover:text-blue-400 transition-colors">Nghề nghiệp</button>
+            <button onclick="show('hiring')" class="hover:text-blue-400 transition-colors">Tuyển dụng</button>
+            <button onclick="show('board')" class="hover:text-blue-400 transition-colors">Hội đồng</button>
+            <button onclick="show('register')" class="bg-blue-600 px-4 py-2 rounded-full hover:bg-blue-700 transition-all">Đăng ký</button>
+        </div>
+    </nav>
+
+    <div id="main-content" class="max-w-6xl mx-auto p-6 animate__animated animate__fadeIn">
+        <div id="jobs" class="space-y-4">
+            <h2 class="text-2xl font-bold mb-6 text-blue-400">Danh mục Nghề nghiệp</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="hover-card bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-blue-500 cursor-pointer shadow-lg">
+                    <h3 class="font-bold text-lg text-white"><i class="fa-solid fa-user-shield mr-2"></i> Cảnh sát (LSPD)</h3>
+                    <p class="text-sm mt-2 text-gray-400">Đơn vị trấn áp tội phạm. <br> Yêu cầu: Bằng lái B2, Lý lịch trong sạch.</p>
+                </div>
+                <div class="hover-card bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-blue-500 cursor-pointer shadow-lg">
+                    <h3 class="font-bold text-lg text-white"><i class="fa-solid fa-stethoscope mr-2"></i> Y tế (EMS)</h3>
+                    <p class="text-sm mt-2 text-gray-400">Cứu chữa cư dân thành phố. <br> Yêu cầu: Chứng chỉ hành nghề, kỹ năng sơ cứu.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function show(id) {
+            document.querySelectorAll('#main-content > div').forEach(div => {
+                div.classList.add('hidden');
+                div.classList.remove('animate__animated', 'animate__fadeIn');
+            });
+            const target = document.getElementById(id);
+            target.classList.remove('hidden');
+            target.classList.add('animate__animated', 'animate__fadeIn');
+        }
+    </script>
+</body>
+</html>
