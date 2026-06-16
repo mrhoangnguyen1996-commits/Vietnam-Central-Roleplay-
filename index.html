@@ -3,204 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VCR | Vietnam Central Roleplay Portal</title>
+    <title>VCR | Vietnam Central Roleplay</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #05070f; color: #e2e8f0; }
-        .font-nav { font-family: 'Space Grotesk', sans-serif; }
-        .vcr-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .vcr-card:hover { transform: translateY(-6px) scale(1.02); border-color: #3b82f6; box-shadow: 0 10px 30px -10px rgba(59, 132, 246, 0.3); }
-        .glow-text { text-shadow: 0 0 12px rgba(59, 132, 246, 0.6); }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #05070f; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9px; }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #03050a; color: #cbd5e1; }
+        .font-cyber { font-family: 'Orbitron', sans-serif; }
+        .marquee-container { overflow: hidden; white-space: nowrap; }
+        .marquee-text { display: inline-block; animation: marquee 20s linear infinite; }
+        @keyframes marquee { 0% { transform: translate3d(100%, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+        .vcr-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
+        .vcr-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent); transition: 0.5s; }
+        .vcr-card:hover::before { left: 100%; }
+        .vcr-card:hover { transform: scale(1.03); border-color: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
+        .stamp-approved { border: 2px solid #10b981; color: #10b981; background: rgba(16, 185, 129, 0.05); transform: rotate(-3deg); font-family: monospace; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between overflow-x-hidden">
 
-    <div class="bg-gradient-to-r from-red-950 via-red-900 to-red-950 border-b border-red-800 text-white text-center py-2 px-4 text-xs font-bold tracking-wide uppercase animate__animated animate__fadeInDown">
-        <i class="fa-solid fa-triangle-exclamation text-amber-500 mr-2 animate-pulse"></i> 
-        Khuyến cáo pháp lý: Toàn bộ thông tin, nghề nghiệp, hồ sơ và văn bản tại website này hoàn toàn là sản phẩm hư cấu phục vụ mục đích nhập vai nhập môn giải trí (Roleplay). Chúng tôi hoàn toàn không liên quan và không đại diện cho bất kỳ tổ chức thực tế nào ngoài đời thực.
+    <!-- DÒNG CẢNH BÁO PHÁP LÝ TỐI CAO ĐỘC QUYỀN ROBLOX -->
+    <div class="bg-gradient-to-r from-red-950 via-red-900 to-red-950 border-b border-red-800 text-white text-center py-2 px-4 text-[11px] font-bold uppercase tracking-wider animate__animated animate__fadeInDown z-50">
+        <i class="fa-solid fa-triangle-exclamation text-yellow-400 mr-2 animate-bounce"></i> 
+        Khuyến cáo pháp lý: Toàn bộ thông tin, địa danh, ban ngành và thủ tục hành chính tại website này chỉ phục vụ cho trò chơi nhập vai giả lập hành chính trên nền tảng <span class="text-yellow-400 font-extrabold underline">ROBLOX</span>. Không có bất kỳ giá trị pháp lý nào ngoài đời thực.
     </div>
 
-    <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#060814]/80 border-b border-gray-900 shadow-2xl">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+    <!-- HEADER CHUYÊN NGHIỆP TỐI TÂN -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-[#03050a]/90 border-b border-gray-950 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-                <div class="bg-blue-600/10 p-2.5 rounded-xl border border-blue-500/30 shadow-inner">
-                    <i class="fa-solid fa-shield-halved text-2xl text-blue-500 animate-pulse"></i>
+                <div class="bg-blue-600/10 p-2 rounded-xl border border-blue-500/30">
+                    <i class="fa-solid fa-server text-xl text-blue-500"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl font-extrabold text-white tracking-wider font-nav glow-text flex items-center gap-2">VIETNAM CENTRAL <span class="bg-blue-600 text-black px-1.5 py-0.5 rounded text-xs font-black">VCR</span></h1>
-                    <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mt-0.5">Cổng Thông Tin Hành Chính Liên Thông Nhập Vai</p>
+                    <h1 class="text-lg font-black text-white tracking-wide font-cyber">VIETNAM CENTRAL <span class="text-blue-500">ROLEPLAY</span></h1>
+                    <p class="text-[9px] text-gray-500 font-bold uppercase tracking-widest">Hệ thống thông tin điện tử cư dân liên thông ban ngành</p>
                 </div>
             </div>
-            <nav class="flex flex-wrap justify-center gap-2 font-nav text-xs uppercase">
-                <button onclick="switchVcrTab('news')" id="btn-news" class="tab-btn px-4 py-2 rounded-lg bg-blue-600 text-white font-bold transition-all"><i class="fa-solid fa-satellite-dish mr-1"></i> Tin Tức</button>
-                <button onclick="switchVcrTab('jobs')" id="btn-jobs" class="tab-btn px-4 py-2 rounded-lg text-gray-400 hover:text-white font-bold transition-all"><i class="fa-solid fa-briefcase mr-1"></i> Nghề Nghiệp</button>
-                <button onclick="switchVcrTab('hiring')" id="btn-hiring" class="tab-btn px-4 py-2 rounded-lg text-gray-400 hover:text-white font-bold transition-all"><i class="fa-solid fa-passport mr-1"></i> Tuyển Dụng</button>
-                <button onclick="switchVcrTab('board')" id="btn-board" class="tab-btn px-4 py-2 rounded-lg text-gray-400 hover:text-white font-bold transition-all"><i class="fa-solid fa-crown mr-1"></i> Ban Quản Trị</button>
-                <button onclick="switchVcrTab('register')" id="btn-register" class="tab-btn px-4 py-2 rounded-lg text-emerald-400 hover:text-white border border-emerald-500/30 hover:bg-emerald-600 font-bold transition-all"><i class="fa-solid fa-id-card mr-1"></i> Đăng Ký Công Dân</button>
+            
+            <!-- THANH MENU ĐIỀU HƯỚNG TƯƠNG TÁC ÂM THANH -->
+            <nav class="flex flex-wrap justify-center gap-1 font-cyber text-[11px] font-bold uppercase">
+                <button onclick="playClick(); switchVcrTab('news')" id="btn-news" class="tab-btn px-3 py-1.5 rounded-md bg-blue-600 text-white transition-all"><i class="fa-solid fa-rss mr-1"></i> Tin Tức</button>
+                <button onclick="playClick(); switchVcrTab('jobs')" id="btn-jobs" class="tab-btn px-3 py-1.5 rounded-md text-gray-400 hover:text-white transition-all"><i class="fa-solid fa-map-location-dot mr-1"></i> Nghề Nghiệp VN</button>
+                <button onclick="playClick(); switchVcrTab('hiring')" id="btn-hiring" class="tab-btn px-3 py-1.5 rounded-md text-gray-400 hover:text-white transition-all"><i class="fa-solid fa-bullhorn mr-1"></i> Tuyển Dụng</button>
+                <button onclick="playClick(); switchVcrTab('board')" id="btn-board" class="tab-btn px-3 py-1.5 rounded-md text-gray-400 hover:text-white transition-all"><i class="fa-solid fa-user-tie mr-1"></i> Ban Quản Trị</button>
+                <button onclick="playClick(); switchVcrTab('register')" id="btn-register" class="tab-btn px-3 py-1.5 rounded-md text-emerald-400 hover:bg-emerald-600/10 border border-emerald-500/20 transition-all"><i class="fa-solid fa-passport mr-1"></i> Nhập Tịch</button>
+                <button onclick="toggleSound()" id="sound-toggle" class="px-3 py-1.5 rounded-md text-amber-500 border border-amber-500/20"><i class="fa-solid fa-volume-high"></i></button>
             </nav>
+        </div>
+
+        <!-- HIỆU ỨNG CHỮ CHẠY HỎA TỐC SINH ĐỘNG -->
+        <div class="bg-blue-600 text-black font-bold text-xs py-1.5 flex items-center border-t border-blue-700/30">
+            <div class="bg-black text-blue-400 px-3 py-0.5 text-[10px] font-black uppercase tracking-wider shrink-0 ml-4 rounded">HỎA TỐC KHẨN SẮC</div>
+            <div class="marquee-container w-full"><span class="marquee-text px-4 font-mono text-[11px] font-bold text-black uppercase">[HỆ THỐNG]: Đồng bộ luồng tờ khai điện tử Roblox... [LSPD]: Tăng cường tuần tra khu vực Phố đi bộ Nguyễn Huệ đề phòng đua xe trái phép... [EMS]: Trực cấp cứu 24/7 tại khu vực ngã tư Hàng Xanh...</span></div>
         </div>
     </header>
 
+    <!-- NỘI DUNG CHÍNH CHỨA HIỆU ỨNG BIẾN ĐỔI -->
     <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6">
         
+        <!-- SECTION 1: TIN TỨC VÀ BIỂU ĐỒ NHẢY SỐ TỰ ĐỘNG -->
         <section id="vcr-news" class="vcr-section block animate__animated animate__fadeIn">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="lg:col-span-2 space-y-4">
-                    <h2 class="text-sm font-black tracking-widest text-blue-500 uppercase border-l-4 border-blue-500 pl-2">Thông cáo báo chí hàng ngày</h2>
-                    <div class="bg-gradient-to-br from-gray-900 to-slate-950 border border-gray-900 p-6 rounded-2xl shadow-xl space-y-4">
-                        <span class="bg-red-500/10 text-red-400 text-[10px] font-black px-2 py-0.5 rounded border border-red-500/20 uppercase">Hỏa tốc sắc lệnh</span>
-                        <h3 class="text-xl font-bold text-white leading-snug">VCR cập nhật chuỗi hạ tầng thành phố, siết chặt quản lý tư pháp</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Hội đồng tối cao thành phố quyết định bổ sung ngân sách đầu tư trang thiết bị thế hệ mới cho lực lượng kiểm soát an ninh đô thị, tăng cường luồng tuần tra bảo vệ an toàn cho cư dân...</p>
-                        <div class="text-[11px] text-gray-500 font-mono flex items-center gap-2"><i class="fa-solid fa-clock"></i> Phát hành: Hôm nay, 16/06/2026</div>
+                    <div class="bg-gradient-to-r from-blue-950/20 to-slate-900/40 border border-gray-900 p-6 rounded-2xl shadow-xl space-y-4 relative">
+                        <div class="absolute top-4 right-4 flex items-center gap-1.5 text-[10px] font-mono text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span> ONLINE</div>
+                        <span class="bg-blue-500/10 text-blue-400 text-[10px] font-black px-2 py-0.5 rounded border border-blue-500/20 uppercase">Bản tin đô thị</span>
+                        <h3 class="text-lg font-bold text-white leading-snug font-cyber">VCR chính thức khởi chạy cổng dịch vụ công trực tuyến diện rộng</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">Hội đồng Thành phố ra quyết định số hóa toàn bộ hệ thống đăng ký quốc tịch và xét duyệt thẻ căn cước công dân trực tiếp qua cụm cổng Web Service. Cư dân tham gia máy chủ Roblox có thể tra cứu thông tin nghề nghiệp và nộp tờ khai liên thông nhanh chóng.</p>
+                        <div class="text-[10px] text-gray-500 font-mono flex items-center gap-1"><i class="fa-solid fa-calendar"></i> Cập nhật: 16/06/2026</div>
                     </div>
                 </div>
-                <div class="space-y-4">
-                    <h2 class="text-sm font-black tracking-widest text-emerald-500 uppercase border-l-4 border-emerald-500 pl-2">Thống Kê Đô Thị</h2>
-                    <div class="bg-gray-900/40 border border-gray-900 p-4 rounded-xl h-[200px] flex items-center justify-center">
-                        <canvas id="vcrKpiChart"></canvas>
+                <!-- PANEL NHẢY SỐ SỐ LIỆU ĐÔ THỊ SINH ĐỘNG -->
+                <div class="bg-gray-900/40 border border-gray-900 p-4 rounded-2xl flex flex-col justify-between">
+                    <div class="border-b border-gray-800 pb-2 mb-2"><h4 class="text-[11px] font-black tracking-widest text-blue-400 uppercase font-cyber"><i class="fa-solid fa-chart-pie mr-1"></i> Số liệu thời gian thực</h4></div>
+                    <div class="grid grid-cols-3 gap-2 text-center font-cyber">
+                        <div class="bg-black/40 p-2 rounded-xl border border-gray-950"><p class="text-[10px] text-gray-500">CƯ DÂN</p><p id="count-citizens" class="text-sm font-black text-emerald-400 mt-1">0</p></div>
+                        <div class="bg-black/40 p-2 rounded-xl border border-gray-950"><p class="text-[10px] text-gray-500">HỒ SƠ TỘI VỤ</p><p id="count-crimes" class="text-sm font-black text-red-500 mt-1">0</p></div>
+                        <div class="bg-black/40 p-2 rounded-xl border border-gray-950"><p class="text-[10px] text-gray-500">CA CẤP CỨU</p><p id="count-ems" class="text-sm font-black text-amber-500 mt-1">0</p></div>
                     </div>
+                    <div class="h-[100px] mt-2 flex items-center justify-center"><canvas id="vcrMiniChart"></canvas></div>
                 </div>
             </div>
         </section>
 
+        <!-- SECTION 2: DANH MỤC NGHỀ NGHIỆP TẠI VIỆT NAM -->
         <section id="vcr-jobs" class="vcr-section hidden animate__animated animate__fadeIn">
-            <h2 class="text-sm font-black tracking-widest text-blue-500 uppercase border-l-4 border-blue-500 pl-2 mb-4">Cơ cấu và vị trí tọa độ việc làm thành phố</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="jobs-container"></div>
         </section>
 
+        <!-- SECTION 3: THÔNG TIN TUYỂN DỤNG CÁC BAN NGÀNH -->
         <section id="vcr-hiring" class="vcr-section hidden animate__animated animate__fadeIn">
-            <h2 class="text-sm font-black tracking-widest text-purple-500 uppercase border-l-4 border-purple-500 pl-2 mb-4">Các ban ngành cốt lõi tuyển dụng nhân sự</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="hiring-container"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="hiring-container"></div>
         </section>
 
+        <!-- SECTION 4: HỘI ĐỒNG QUẢN TRỊ BẢN SẠCH CHUYÊN NGHIỆP -->
         <section id="vcr-board" class="vcr-section hidden animate__animated animate__fadeIn">
-            <h2 class="text-sm font-black tracking-widest text-amber-500 uppercase border-l-4 border-amber-500 pl-2 mb-4">Hội đồng sáng lập & Điều hành cấp cao VCR</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="board-container"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto" id="board-container"></div>
         </section>
 
+        <!-- SECTION 5: ĐĂNG KÝ CÔNG DÂN TƯƠNG TÁC CAO -->
         <section id="vcr-register" class="vcr-section hidden animate__animated animate__fadeIn">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div class="bg-gray-900 border border-gray-800 p-5 rounded-2xl space-y-4">
-                    <h3 class="text-md font-bold text-white border-b border-gray-800 pb-2 uppercase"><i class="fa-solid fa-file-signature text-emerald-500 mr-1"></i> Tờ khai nhập tịch điện tử</h3>
+                <div class="bg-[#0b0f19] border border-gray-900 p-5 rounded-2xl space-y-4">
+                    <h3 class="text-xs font-black text-white border-b border-gray-800 pb-2 uppercase font-cyber flex items-center gap-2"><i class="fa-solid fa-file-invoice text-emerald-500"></i> Đơn đăng ký nhập tịch</h3>
                     <div class="space-y-3 text-xs font-mono">
                         <div>
-                            <label class="block text-gray-500 mb-1">TÊN IN-GAME (Họ_Tên)</label>
-                            <input type="text" id="reg-name" placeholder="Ví dụ: Nguyen_Manh_Hoang" class="w-full bg-[#060814] border border-gray-800 rounded p-2 text-white focus:border-emerald-500 focus:outline-none">
+                            <label class="block text-gray-500 mb-1">TÊN TÀI KHOẢN ROBLOX (Họ_Tên)</label>
+                            <input type="text" id="reg-name" placeholder="Ví dụ: Tuan_Anh" class="w-full bg-black border border-gray-800 rounded p-2.5 text-white font-bold focus:border-emerald-500 focus:outline-none">
                         </div>
                         <div>
-                            <label class="block text-gray-500 mb-1">ĐỊNH HƯỚNG NGHỀ NGHIỆP KHÁT VỌNG</label>
-                            <select id="reg-job" class="w-full bg-[#060814] border border-gray-800 rounded p-2 text-white">
-                                <option value="Cảnh Sát Thành Phố">Cảnh Sát Quốc Gia LSPD</option>
-                                <option value="Bác Sĩ Cấp Cứu">Y Tế EMS Toàn Cục</option>
-                                <option value="Doanh Nhân Thương Mại">Kinh Doanh Hợp Pháp</option>
+                            <label class="block text-gray-500 mb-1">NGUYỆN VỌNG NGHỀ NGHIỆP CÔNG VỤ</label>
+                            <select id="reg-job" class="w-full bg-black border border-gray-800 rounded p-2.5 text-white font-bold">
+                                <option value="Cảnh Sát Giao Thông">Cảnh Sát Giao Thông Việt Nam</option>
+                                <option value="Bác Sĩ Cấp Cứu 115">Bác Sĩ Cấp Cứu 115 Chợ Rẫy</option>
+                                <option value="Kỹ Sư Cứu Hộ Đường Bộ">Kỹ Sư Cứu Hộ Đường Bộ</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-gray-500 mb-1">TIỂU SỬ / CAM KẾT LUẬT THÀNH PHỐ</label>
-                            <textarea id="reg-story" placeholder="Tôi cam kết tuân thủ nghiêm ngặt mọi điều khoản quy định nhập vai của VCR..." rows="3" class="w-full bg-[#060814] border border-gray-800 rounded p-2 text-white focus:border-emerald-500 focus:outline-none text-[11px]"></textarea>
+                            <label class="block text-gray-500 mb-1">CAM KẾT LUẬT NHẬP VAI (ROLEPLAY)</label>
+                            <textarea id="reg-story" placeholder="Tôi cam kết tuân thủ nghiêm ngặt luật không phá hoại game (Fail RP, Thừa cơ...), giữ vững tinh thần nhập vai nghiêm túc..." rows="3" class="w-full bg-black border border-gray-800 rounded p-2.5 text-white focus:border-emerald-500 focus:outline-none text-[11px]"></textarea>
                         </div>
-                        <button onclick="submitVcrCitizen()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-black font-black py-2.5 rounded-xl uppercase transition-colors tracking-wider">Nộp hồ sơ duyệt quốc tịch</button>
+                        <button onclick="submitVcrCitizen()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-black font-black py-3 rounded-xl uppercase transition-all tracking-wider font-cyber shadow-lg shadow-emerald-500/10">Nộp tờ khai điện tử</button>
                     </div>
                 </div>
-                <div class="lg:col-span-2 bg-gray-900/40 border border-gray-900 p-5 rounded-2xl flex flex-col justify-between">
+                <div class="lg:col-span-2 bg-[#060912]/40 border border-gray-900 p-5 rounded-2xl flex flex-col justify-between">
                     <div>
-                        <h3 class="text-md font-bold text-white border-b border-gray-800 pb-2 uppercase mb-3"><i class="fa-solid fa-server text-blue-500 mr-1"></i> Bảng tiến trình & Số hóa dân sự liên thông</h3>
-                        <div id="citizens-list" class="space-y-3 max-h-[250px] overflow-y-auto text-xs"></div>
+                        <h3 class="text-xs font-black text-white border-b border-gray-800 pb-2 uppercase mb-3 font-cyber"><i class="fa-solid fa-list-check text-blue-500 mr-1"></i> Danh sách tờ khai chờ phê chuẩn trên hàng đợi</h3>
+                        <div id="citizens-list" class="space-y-2 max-h-[220px] overflow-y-auto text-xs"></div>
                     </div>
-                    <div id="system-logs" class="bg-black p-3 rounded-xl border border-gray-900 text-[10px] font-mono text-emerald-500 mt-4 h-[80px] overflow-y-auto"></div>
+                    <div id="system-logs" class="bg-black p-3 rounded-xl border border-gray-950 text-[10px] font-mono text-emerald-400 mt-4 h-[70px] overflow-y-auto"></div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-black border-t border-gray-900 py-4 text-center text-[11px] text-gray-600 tracking-wider">
-        <p>© 2026 VIETNAM CENTRAL ROLEPLAY (VCR) SERVICE - KIẾN TRÚC MÁY CHỦ BẢO MẬT BIÊN DỊCH</p>
+    <footer class="bg-black border-t border-gray-950 py-3 text-center text-[10px] text-gray-600 font-mono tracking-widest">
+        <p>© 2026 VIETNAM CENTRAL ROLEPLAY PORTAL FOR ROBLOX VẬN HÀNH TRÊN RENDER WEB SERVICE</p>
     </footer>
 
     <script>
-        // MẢNG DỮ LIỆU TĨNH SẠCH 100% CẤU TRÚC, CHỐNG CRASH STRING TRÊN NODE
+        // CẤU TRÚC DANH MỤC NGHỀ NGHIỆP VIỆT NAM THỰC TẾ ĐẬP TAN SỰ NHÀM CHÁN
         const staticJobs = [
-            { title: "Cảnh Sát Quốc Gia (LSPD)", location: "Trụ sở Trung Tâm Mission Row", guide: "Bảo đảm trật tự an ninh, xử lý xung đột, tuần tra tuyến đường chính.", icon: "fa-user-shield", color: "border-blue-500/30 text-blue-400" },
-            { title: "Bác Sĩ Cứu Hộ (EMS)", location: "Bệnh viện Đa Khoa Pillbox", guide: "Phản ứng nhanh luồng cuộc gọi cứu thương, cấp cứu hồi sức công dân gặp nạn.", icon: "fa-heart-pulse", color: "border-red-500/30 text-red-400" },
-            { title: "Thợ Sửa Xe Chuyên Nghiệp", location: "Gara Trung Tâm Los Santos Customs", guide: "Cứu hộ phương tiện sập nguồn, độ xe, bảo dưỡng định kỳ cơ sở hạ tầng.", icon: "fa-wrench", color: "border-amber-500/30 text-amber-400" },
-            { title: "Tài Xế Taxi Đô Thị", location: "Hãng xe Downtown Cab Co.", guide: "Đưa đón cư dân di chuyển liên tỉnh an toàn, phục vụ vận tải văn minh.", icon: "fa-taxi", color: "border-yellow-500/30 text-yellow-400" },
-            { title: "Khai Thác Khoáng Sản", location: "Mỏ đá dãy núi Blaine County", guide: "Đào quặng, vận chuyển vật liệu thô về nhà máy tinh chế thành phẩm giá trị.", icon: "fa-pickaxe", color: "border-cyan-500/30 text-cyan-400" },
-            { title: "Luật Sư / Thẩm Phán", location: "Tòa án tối cao khu vực trung tâm", guide: "Bào chữa tư pháp, bảo vệ quyền lợi hợp pháp dân sự, soạn thảo văn bản luật.", icon: "fa-scale-balanced", color: "border-purple-500/30 text-purple-400" }
+            { title: "Cảnh Sát Giao Thông / Tuần Tra", location: "Trụ sở Công An Quận 1, TP. Hồ Chí Minh", guide: "Điều phối giao thông trên các tuyến đường chính, xử lý các trường hợp lạng lách, đua xe trái phép, bảo vệ bình yên tuyến phố đi bộ.", icon: "fa-user-shield", color: "border-blue-500/30 text-blue-400" },
+            { title: "Bác Sĩ Cấp Cứu 115", location: "Bệnh viện Chợ Rẫy, Quận 5", guide: "Di chuyển xe cứu thương cơ động tiếp cận hiện trường các vụ tai nạn, sơ cứu hồi sức và vận chuyển bệnh nhân về phòng mổ khẩn cấp.", icon: "fa-heart-pulse", color: "border-red-500/30 text-red-400" },
+            { title: "Kỹ Sư Sửa Chữa / Cứu Hộ", location: "Gara Chân Cầu Sài Gòn, Bình Thạnh", guide: "Sửa chữa các phương tiện giao thông bị sập nguồn giữa đường, cứu hộ kéo xe về gara, nâng cấp động cơ phục vụ cư dân.", icon: "fa-wrench", color: "border-amber-500/30 text-amber-400" },
+            { title: "Tài Xế Công Nghệ", location: "Bến xe Miền Đông mới", guide: "Đón trả khách theo định vị trên bản đồ điện tử, lái xe an toàn, tuân thủ nghiêm ngặt luật giao thông đường bộ Việt Nam.", icon: "fa-car", color: "border-emerald-500/30 text-emerald-400" }
         ];
 
         const staticHiring = [
-            { agency: "CỤC AN NINH QUỐC GIA LSPD", slots: "Tuyển thêm 15 Học Viên Sĩ Quan", req: "Sử dụng thành thạo vũ khí, giao tiếp đàm thoại tốt, nghiêm túc chấp hành kỷ luật.", badge: "Đóng đơn thẩm định ngày 25/06" },
-            { agency: "BỘ Y TẾ LIÊN BANG EMS", slots: "Tuyển 10 Thực Tập Sinh Cấp Cứu", req: "Có phản xạ cơ động nhanh, chịu được áp lực tần suất cao, ưu tiên có kinh nghiệm.", badge: "Mở tuyển trực tuyến tự do" }
+            { agency: "CÔNG AN THÀNH PHỐ (LSPD BRANCH)", slots: "Tuyển 20 Sĩ Quan Tuần Tra Học Việc", req: "Nắm vững luật luật giao thông, có khả năng lái xe truy đuổi tốt, nghiêm túc trực ban.", badge: "Đang mở nhận hồ sơ" },
+            { agency: "TRUNG TÂM CẤP CỨU LIÊN PHÒNG (EMS BRANCH)", slots: "Tuyển 10 Y Sĩ Thực Tập Cơ Động", req: "Có kỹ năng phản xạ nhanh, thông thạo sơ đồ đường phố để lái xe cứu thương tối ưu.", badge: "Xét tuyển tự động" }
         ];
 
         const staticBoard = [
-            { name: "Nguyễn Mạnh Hoàng", role: "Founder / Giám Đốc Điều Hành Hệ Thống", desc: "Chủ quản chịu trách nhiệm tối cao phát triển và duy trì luồng vận hành cốt lõi máy chủ.", avatar: "fa-crown", text: "text-amber-400" },
-            { name: "Trần Minh Quang", role: "Co-Founder / Trưởng Ban Quản Trị Nhân Sự", desc: "Điều hành khối ban ngành dọc LSPD, EMS và tổ chức giải quyết khiếu nại tư pháp cư dân.", avatar: "fa-shield-halved", text: "text-blue-400" }
+            { role: "Tổng Cục Trưởng / Founder Hệ Thống", desc: "Chủ quản chịu trách nhiệm tối cao thiết kế hạ tầng mã nguồn, điều phối vận hành cốt lõi máy chủ Roblox.", icon: "fa-crown", text: "text-amber-400" },
+            { role: "Khối Trưởng Điều Hành / Co-Founder", desc: "Đảm nhiệm giám sát khối ban ngành công vụ, quản lý luật nhập vai và giải quyết tranh chấp tư pháp.", icon: "fa-shield-halved", text: "text-blue-400" }
         ];
 
         let localServerDB = { citizens: [], logs: [] };
+        let myChartInstance = null;
+        let isSoundEnabled = true;
+
+        // TẠO ÂM THANH BÍP BÍP ĐIỆN TỬ CỦA HACKER KHÔNG CẦN FILE NGOÀI
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playClick() {
+            if (!isSoundEnabled) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(800, audioCtx.currentTime); 
+            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.08);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.08);
+        }
+
+        function toggleSound() {
+            isSoundEnabled = !isSoundEnabled;
+            document.getElementById('sound-toggle').innerHTML = isSoundEnabled ? '<i class="fa-solid fa-volume-high"></i>' : '<i class="fa-solid fa-volume-xmark text-red-500"></i>';
+        }
 
         async function fetchSystemDB() {
             try {
                 const res = await fetch('/api/vcr/db');
                 localServerDB = await res.json();
                 renderDynamicRegisterZone();
-            } catch (err) { console.error("Lỗi đồng bộ gói tin:", err); }
+            } catch (err) { console.error("Lỗi kết nối API:", err); }
         }
 
         function renderStaticSections() {
-            const jobsCon = document.getElementById('jobs-container');
-            if(jobsCon) {
-                jobsCon.innerHTML = staticJobs.map(j => `
-                    <div class="vcr-card bg-[#0b0e1e] border border-gray-900 p-5 rounded-2xl space-y-3 cursor-pointer">
-                        <div class="flex items-center justify-between">
-                            <h3 class="font-bold text-sm text-white">${j.title}</h3>
-                            <i class="fa-solid ${j.icon} ${j.color} text-lg"></i>
-                        </div>
-                        <p class="text-xs text-gray-500 font-mono"><i class="fa-solid fa-location-dot"></i> Tọa độ: ${j.location}</p>
-                        <p class="text-xs text-gray-400 leading-relaxed italic">"${j.guide}"</p>
+            document.getElementById('jobs-container').innerHTML = staticJobs.map(j => `
+                <div class="vcr-card bg-[#0b0f19] border border-gray-900 p-5 rounded-2xl space-y-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-bold text-xs text-white uppercase font-cyber">${j.title}</h3>
+                        <i class="fa-solid ${j.icon} ${j.color}"></i>
                     </div>
-                `).join('');
-            }
+                    <p class="text-[10px] text-gray-500 font-mono"><i class="fa-solid fa-location-dot"></i> ${j.location}</p>
+                    <p class="text-[11px] text-gray-400 leading-relaxed italic">"${j.guide}"</p>
+                </div>
+            `).join('');
 
-            const hiringCon = document.getElementById('hiring-container');
-            if(hiringCon) {
-                hiringCon.innerHTML = staticHiring.map(h => `
-                    <div class="bg-gradient-to-br from-gray-900 to-[#0e1124] border border-gray-800 p-5 rounded-2xl space-y-2">
-                        <div class="flex justify-between items-start"><h4 class="font-bold text-white text-sm tracking-wide">${h.agency}</h4><span class="bg-purple-500/10 text-purple-400 text-[10px] px-2 py-0.5 rounded border border-purple-500/20">${h.badge}</span></div>
-                        <p class="text-xs font-black text-amber-500 font-mono">${h.slots}</p>
-                        <p class="text-xs text-gray-400 leading-relaxed">${h.req}</p>
-                    </div>
-                `).join('');
-            }
+            document.getElementById('hiring-container').innerHTML = staticHiring.map(h => `
+                <div class="bg-gradient-to-br from-gray-900 to-[#0b0e1a] border border-gray-800 p-5 rounded-2xl space-y-2">
+                    <div class="flex justify-between items-start"><h4 class="font-bold text-white text-xs font-cyber tracking-wide">${h.agency}</h4><span class="bg-purple-500/10 text-purple-400 text-[9px] px-2 py-0.5 rounded border border-purple-500/20 font-mono">${h.badge}</span></div>
+                    <p class="text-[11px] font-black text-amber-400 font-mono">${h.slots}</p>
+                    <p class="text-[11px] text-gray-500 leading-relaxed">${h.req}</p>
+                </div>
+            `).join('');
 
-            const boardCon = document.getElementById('board-container');
-            if(boardCon) {
-                boardCon.innerHTML = staticBoard.map(b => `
-                    <div class="bg-gray-900 border border-gray-800/60 p-5 rounded-xl text-center space-y-2">
-                        <div class="w-12 h-12 rounded-full bg-gray-950 flex items-center justify-center mx-auto border border-gray-800"><i class="fa-solid ${b.avatar} ${b.text} text-xl"></i></div>
-                        <h4 class="font-bold text-white text-sm mt-2">${b.name}</h4>
-                        <p class="text-[11px] ${b.text} font-bold">${b.role}</p>
-                        <p class="text-xs text-gray-500 leading-relaxed">${b.desc}</p>
-                    </div>
-                `).join('');
-            }
+            document.getElementById('board-container').innerHTML = staticBoard.map(b => `
+                <div class="bg-gray-900/50 border border-gray-900 p-6 rounded-2xl text-center space-y-2">
+                    <div class="w-10 h-10 rounded-xl bg-black flex items-center justify-center mx-auto border border-gray-800"><i class="fa-solid ${b.icon} ${b.text}"></i></div>
+                    <h4 class="font-bold text-white text-xs uppercase tracking-wider font-cyber mt-2">${b.role}</h4>
+                    <p class="text-[11px] text-gray-400 leading-relaxed">${b.desc}</p>
+                </div>
+            `).join('');
         }
 
         async function submitVcrCitizen() {
             const name = document.getElementById('reg-name').value.trim();
             const targetJob = document.getElementById('reg-job').value;
             const story = document.getElementById('reg-story').value.trim();
-            if(!name || !story) return alert('Họ_Tên và lời cam kết không được rỗng!');
+            if(!name || !story) return alert('Họ tên nhân vật và cam kết không được bỏ trống!');
             
-            const payload = { name, targetJob, story, time: new Date().toLocaleTimeString(), stampId: 'VCR-' + Math.floor(10000 + Math.random() * 90000) };
+            const payload = { name, targetJob, story, time: new Date().toLocaleTimeString(), stampId: 'VCR-' + Math.floor(1000 + Math.random() * 9000) };
             await fetch('/api/vcr/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -208,44 +241,45 @@
             });
             document.getElementById('reg-name').value = '';
             document.getElementById('reg-story').value = '';
-            alert('Hồ sơ nhập tịch của bạn đã được chuyển thẳng tới phòng chỉ huy!');
+            alert('Tờ khai nhập tịch điện tử của bạn đã đẩy lên cụm dữ liệu Render!');
             await fetchSystemDB();
         }
 
         function renderDynamicRegisterZone() {
-            const listCon = document.getElementById('citizens-list');
-            if(listCon && localServerDB.citizens) {
-                listCon.innerHTML = localServerDB.citizens.map(c => `
-                    <div class="bg-[#0b0e1e] p-3 rounded-xl border border-gray-900 flex justify-between items-center animate__animated animate__fadeInLeft">
-                        <div>
-                            <p class="font-bold text-white font-mono">@${c.name} <span class="text-cyan-400 text-[10px] ml-2">[${c.stampId}]</span></p>
-                            <p class="text-gray-500 text-[11px] mt-0.5">Ước nguyện công vụ: ${c.targetJob}</p>
-                            <p class="text-gray-400 italic text-[10px] mt-1">"${c.story}"</p>
-                        </div>
-                        <div class="stamp stamp-approved text-center shrink-0 text-[10px] font-black tracking-wider">[ĐÃ THÔNG QUA]</div>
+            document.getElementById('citizens-list').innerHTML = localServerDB.citizens.map(c => `
+                <div class="bg-black/60 p-3 rounded-xl border border-gray-900 flex justify-between items-center animate__animated animate__fadeInLeft">
+                    <div>
+                        <p class="font-bold text-white font-mono text-[11px]">@${c.name} <span class="text-blue-400 text-[9px] font-bold ml-2">[${c.stampId}]</span></p>
+                        <p class="text-gray-500 text-[10px] mt-0.5">Nguyện vọng: ${c.targetJob}</p>
                     </div>
-                `).join('');
-            }
+                    <div class="stamp-approved text-[9px] font-black tracking-widest px-2 py-0.5 rounded font-mono shrink-0 uppercase">[PHÊ CHUẨN]</div>
+                </div>
+            `).join('');
 
-            const logsCon = document.getElementById('system-logs');
-            if(logsCon && localServerDB.logs) {
-                logsCon.innerHTML = localServerDB.logs.map(l => `<p class="py-0.5 border-b border-gray-950"><i class="fa-solid fa-angle-right text-purple-500"></i> ${l}</p>`).join('');
-            }
+            document.getElementById('system-logs').innerHTML = localServerDB.logs.map(l => `<p class="py-0.5 border-b border-gray-950"><i class="fa-solid fa-angle-right text-blue-500"></i> ${l}</p>`).join('');
         }
 
-        function renderKPIChartCore() {
-            const ctx = document.getElementById('vcrKpiChart').getContext('2d');
+        function updateLiveCounters() {
+            // HIỆU ỨNG NHẢY SỐ TỰ ĐỘNG KHÔNG NGỪNG TẠO CẢM GIÁC THÀNH PHỐ ĐANG SỐNG
+            document.getElementById('count-citizens').innerText = localServerDB.citizens.length + 1540;
+            document.getElementById('count-crimes').innerText = Math.floor(20 + Math.random() * 5);
+            document.getElementById('count-ems').innerText = Math.floor(8 + Math.random() * 3);
+        }
+
+        function renderMiniChartCore() {
+            const ctx = document.getElementById('vcrMiniChart').getContext('2d');
             if(myChartInstance) myChartInstance.destroy();
             myChartInstance = new Chart(ctx, {
-                type: 'doughnut',
+                type: 'line',
                 data: {
-                    labels: ['Sĩ quan LSPD', 'Bác sĩ EMS', 'Cư dân tự do'],
-                    datasets: [{ data: [45, 25, 120], backgroundColor: ['#3b82f6', '#ef4444', '#10b981'], borderWidth: 0 }]
+                    labels: ['01h', '04h', '08h', '12h', '16h', '20h'],
+                    datasets: [{ label: 'Traffic', data: [12, 5, 45, 80, 110, 140], borderColor: '#3b82f6', tension: 0.4, borderWith: 2, pointRadius: 0 }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { position: 'right', labels: { color: '#9ca3af', font: { size: 10 } } } }
+                    scales: { x: { display: false }, y: { display: false } },
+                    plugins: { legend: { display: false } }
                 }
             });
         }
@@ -260,10 +294,10 @@
         window.addEventListener('load', () => {
             renderStaticSections();
             fetchSystemDB();
-            renderKPIChartCore();
-            setInterval(fetchSystemDB, 5000);
+            renderMiniChartCore();
+            setInterval(fetchSystemDB, 4000);
+            setInterval(updateLiveCounters, 1500);
             
-            // Cập nhật đồng hồ thời gian thực quốc gia giả lập
             setInterval(() => {
                 const now = new Date();
                 document.getElementById('live-clock').innerText = String(now.getHours()).padStart(2, '0') + ":" + String(now.getMinutes()).padStart(2, '0') + ":" + String(now.getSeconds()).padStart(2, '0') + " 16/06/2026";
